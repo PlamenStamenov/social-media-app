@@ -1,7 +1,7 @@
 import Rightbarhome from "../rightbarhome/Rightbarhome";
 import ProfileRightBar from "./../profileRightBar/ProfileRightBar";
 
-import "./Rightbar.css";
+import "./Rightbar.scss";
 
 export default function Rightbar({profile}) {
     return (

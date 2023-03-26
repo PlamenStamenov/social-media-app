@@ -9,7 +9,7 @@ import {
     ShareOutlined,
 } from "@mui/icons-material";
 
-import "./Post.css";
+import "./Post.scss";
 
 export default function Post({ post }) {
     console.log(post);

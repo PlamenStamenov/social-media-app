@@ -14,7 +14,7 @@ import { Users } from "../../data";
 
 import MenuLink from "../menuLink/MenuLink"
 
-import "./Sidebar.css";
+import "./Sidebar.scss";
 
 export default function Sidebar() {
     return (

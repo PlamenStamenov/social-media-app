@@ -4,7 +4,7 @@ import Post from "../post/Post";
 import Share from "../share/Share";
 import Stories from "../stories/Stories";
 
-import "./Feed.css";
+import "./Feed.scss";
 
 export default function Feed() {
     return (

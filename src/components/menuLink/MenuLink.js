@@ -1,4 +1,4 @@
-import "./MenuLink.css";
+import "./MenuLink.scss";
 
 const MenuLink = ({ Icon, text }) => {
   return (

@@ -3,7 +3,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
-import "./Navbar.css";
+import "./Navbar.scss";
 
 export default function Navbar () {
     return (

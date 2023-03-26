@@ -1,4 +1,4 @@
-import "./profileRightBar.css";
+import "./profileRightBar.scss";
 
 export default function ProfileRightBar () {
   return (

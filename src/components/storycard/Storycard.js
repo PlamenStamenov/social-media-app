@@ -1,4 +1,4 @@
-import "./Storycard.css";
+import "./Storycard.scss";
 
 export default function Storycard ({ user }) {
   return (

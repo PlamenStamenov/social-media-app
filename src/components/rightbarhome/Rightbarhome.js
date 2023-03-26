@@ -1,7 +1,7 @@
 import React from "react";
 import Online from "../online/Online";
 import { Usersonline } from "../../data";
-import "./Rightbarhome.css";
+import "./Rightbarhome.scss";
 
 export default function Rightbarhome () {
   return (

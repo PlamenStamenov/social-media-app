@@ -1,4 +1,4 @@
-import "./Friends.css";
+import "./Friends.scss";
 
 export default function Friends({user}) {
     return (

@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 
-import "./Share.css";
+import "./Share.scss";
 
 export default function Share() {
     const [file, setFile] = useState(null);

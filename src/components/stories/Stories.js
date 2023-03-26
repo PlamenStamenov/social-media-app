@@ -1,6 +1,7 @@
 import Storycard from "../storycard/Storycard";
 import { Users } from "../../data";
-import "./Stories.css";
+
+import "./Stories.scss";
 
 export default function Stories () {
   return (
