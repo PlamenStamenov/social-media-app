@@ -1,0 +1,136 @@
+.navbarContainer {
+  width: 100%;
+  height: 50px;
+  background-color: #53348a;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbarContainer .navbarLeft {
+  flex: 3;
+}
+.navbarContainer .navbarLeft .logo {
+  font-size: 24px;
+  color: white;
+  margin-left: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.navbarContainer .navbarCenter {
+  flex: 5;
+}
+.navbarContainer .navbarCenter .searchBar {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+}
+.navbarContainer .navbarCenter .searchBar .searchIcon {
+  font-size: 20px;
+  margin-left: 10px;
+  color: gray;
+  cursor: pointer;
+}
+.navbarContainer .navbarCenter .searchBar .searchInput {
+  border: none;
+  width: 90%;
+  height: 30px;
+}
+.navbarContainer .navbarCenter .searchBar .searchInput:focus {
+  outline: none;
+}
+.navbarContainer .navbarRight {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+}
+.navbarContainer .navbarRight .navbarLink {
+  margin-left: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.navbarContainer .navbarRight .navbarIcons {
+  display: flex;
+  font-size: 20px;
+  gap: 10px;
+}
+.navbarContainer .navbarRight .navbarIcons .navbarIconItem {
+  display: flex;
+  margin-right: 15px;
+  position: relative;
+  cursor: pointer;
+}
+.navbarContainer .navbarRight .navbarIcons .navbarIconBadge {
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  position: absolute;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -5px;
+  right: -5px;
+}
+.navbarContainer .navbarRight .navbarImg {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 992px) {
+  .navbarContainer .navbarLeft {
+    flex: 2;
+  }
+  .navbarContainer .navbarLeft .logo {
+    font-weight: 500;
+  }
+  .navbarContainer .navbarCenter {
+    flex: 5;
+  }
+  .navbarContainer .navbarCenter .searchBar {
+    width: 95%;
+  }
+  .navbarContainer .navbarCenter .searchBar .searchInput {
+    width: 70%;
+  }
+  .navbarContainer .navbarRight .navbarImg {
+    margin-right: 20px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .navbarContainer .navbarLeft {
+    flex: 3;
+  }
+  .navbarContainer .navbarRight .navbarLink {
+    display: none;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .navbarContainer {
+    justify-content: space-between;
+  }
+  .navbarContainer .navbarLeft {
+    flex: 1;
+  }
+  .navbarContainer .navbarCenter {
+    flex: 1;
+    display: none;
+  }
+  .navbarContainer .navbarRight {
+    flex: 1;
+  }
+}/*# sourceMappingURL=Navbar.css.map */

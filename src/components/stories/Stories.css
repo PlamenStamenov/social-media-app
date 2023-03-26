@@ -1,0 +1,62 @@
+.stories {
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+.stories .storyCard {
+  display: flex;
+  flex-basis: 20%;
+  margin: 5px;
+  position: relative;
+}
+.stories .storyCard .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.6;
+  border-radius: 10px;
+}
+.stories .storyCard .storyProfile {
+  display: flex;
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+  border: 3px solid #53348a;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.stories .storyCard .storybackground {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+.stories .storyCard .storyadd {
+  position: absolute;
+  left: 50%;
+  color: #0047a3;
+  width: 43px;
+  bottom: 50px;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+.stories .storyCard .text {
+  position: absolute;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+}/*# sourceMappingURL=Stories.css.map */
