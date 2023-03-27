@@ -3,7 +3,7 @@ export const Users = [
       id: 1,
       name: "Janet Stephen",
       username: "janet_22",
-      email: "amber@logan.tv",
+      email: "Plamen@logan.tv",
       profilePicture: "/assets/person/person1.jpg",
     },
     {

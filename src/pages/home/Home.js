@@ -5,7 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 import "./Home.scss";
 
-const Home = () => {
+export default function Home () {
   return (
     <div className="home">
       <Navbar />
@@ -17,5 +17,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

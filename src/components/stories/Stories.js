@@ -11,7 +11,7 @@ export default function Stories () {
         <img src="/assets/person/user.jpg" alt="" className="storyProfile" />
         <img src="/assets/person/user.jpg" alt="" className="storybackground" />
         <img src="/assets/person/upload.png" alt="" className="storyadd" />
-        <span className="text">Amber</span>
+        <span className="text">Plamen</span>
       </div>
 
       {Users.map((u) => (

@@ -1,13 +1,11 @@
 import "./MenuLink.scss";
 
-const MenuLink = ({ Icon, text }) => {
+export default function MenuLink ({ Icon, text }) {
   return (
     <div className="menuLink">
       {Icon}
       <span className="menuLinkText">{text}</span>
-      <span className="menuLinkTextName">{text === "Logout" && "(Amber)"}</span>
+      <span className="menuLinkTextName">{text === "Logout" && "(Plamen)"}</span>
     </div>
   );
 };
-
-export default MenuLink;

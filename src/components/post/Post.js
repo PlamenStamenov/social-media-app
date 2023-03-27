@@ -8,6 +8,7 @@ import {
     ThumbUpAltOutlined,
     ShareOutlined,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import "./Post.scss";
 
@@ -18,7 +19,7 @@ export default function Post({ post }) {
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        
+                        <Link to="/profile/userId">
                             <img
                                 src={
                                     Users.filter((u) => u.id === post.userId)[0].profilePicture
@@ -26,7 +27,7 @@ export default function Post({ post }) {
                                 alt=""
                                 className="postProfileImg"
                             />
-                        
+                        </Link>
                         <span className="postUsername">
                             {Users.filter((u) => u.id === post.userId)[0].username}
                         </span>

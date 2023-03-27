@@ -25,7 +25,7 @@ export default function Share() {
                     />
                     <input
                         type="text"
-                        placeholder="What's on your mind Amber ?"
+                        placeholder="What's on your mind Plamen ?"
                         className="shareInput"
                     />
                 </div>
