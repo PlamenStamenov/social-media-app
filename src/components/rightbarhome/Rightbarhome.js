@@ -16,7 +16,7 @@ export default function Rightbarhome () {
           <b>Sarah Dane</b> and <b>other friends</b> have a birthday today
         </span>
       </div>
-      <img src="/assets/ads/adv.jpg" alt="" className="rightbarAdvert" />
+      <img src="/assets/adv.jpg" alt="" className="rightbarAdvert" />
 
       <span className="rightbarTitle">Online Friends</span>
 

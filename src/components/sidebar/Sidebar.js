@@ -5,16 +5,13 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EventIcon from "@mui/icons-material/Event";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
-
+import MenuLink from "../menuLink/MenuLink"
 import Friends from "../friends/Friends";
-
 import { Users } from "../../data";
 
-import MenuLink from "../menuLink/MenuLink"
-
 import "./Sidebar.scss";
+
 
 export default function Sidebar() {
     return (
