@@ -14,8 +14,9 @@ export default function App() {
         <Routes>
           <Route path="/">
             <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route index element={<Home />} />
+            {/*<Route path={currentUser ? currentUser.displayName : "login"} element={<Home />} />*/}
+            <Route path="home" element={<Home />} />
+            <Route index element={<Register />} />
             <Route path="profile">
               <Route path=":userId" element={<Profile />} />
               <Route path=":userId/edit" element={<EditProfile />} />

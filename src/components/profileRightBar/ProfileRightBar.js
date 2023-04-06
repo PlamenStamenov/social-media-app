@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-import "./profileRightBar.scss";
+import "./ProfileRightBar.scss";
 
 export default function ProfileRightBar() {
     return (
