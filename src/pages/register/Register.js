@@ -87,7 +87,7 @@ export default function Register() {
                 <div className="registerLeft">
                     <h3 className="registerLogo">StateHook</h3>
                     <span className="registerDesc">
-                        Connect with friends and the world around you on Facebook.
+                        Connect with friends and the world around you on StateHook.
                     </span>
                 </div>
                 <div className="registerRight">
