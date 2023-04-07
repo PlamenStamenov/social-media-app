@@ -6,119 +6,103 @@ import { AuthContext } from "../../context/AuthContext";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db, storage } from "../../firebase";
-import {
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-  updateEmail,
-  updateProfile,
-} from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 import "./EditProfile.scss";
 
+export default function EditProfile () {
+  const { currentUser } = useContext(AuthContext);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
-export default function EditProfile() {
-    const { currentUser } = useContext(AuthContext);
-    //edit profile information from the form and update the user profile in firebase
-    const [file, setFile] = useState(null);
-    const navigate = useNavigate();
+  const handleFileChange = (e) => {
+    const selected = e.target.files[0];
+    setFile(selected);
+  };
 
-    const handleFileChange = (e) => {
-        const selected = e.target.files[0];
-        setFile(selected);
-    };
+  const updateProfileInfo = async (updatedInfo) => {
+    await updateProfile(currentUser, updatedInfo);
+  };
 
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        const name = e.target.name.value;
-        const username = e.target.username.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        const phone = e.target.phone.value;
-        const address = e.target.address.value;
-        const country = e.target.country.value;
+  const updateUserInDatabase = async (updatedData) => {
+    const userRef = doc(db, "users", currentUser.uid);
+    await setDoc(userRef, {
+      ...updatedData,
+      createdAt: serverTimestamp(),
+    });
+  };
 
-        //update profile image
-        if (file) {
-            const storageRef = ref(storage, `profile/${file.name}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-            uploadTask.on(        //listen to the state of the upload task
-                "state_changed",
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log("Upload is " + progress + "% done");
-                },
-                (error) => {
-                    console.log(error);
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        updateProfile(currentUser, {
-                            photoURL: downloadURL,
-                        });
-                    });
-                }
-            );
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const username = e.target.username.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const phone = e.target.phone.value;
+    const address = e.target.address.value;
+    const country = e.target.country.value;
+
+    const updatedInfo = {};
+    const updatedData = {};
+
+    if (file) {
+      const storageRef = ref(storage, `profile/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            updateProfileInfo({ photoURL: downloadURL });
+          });
         }
+      );
+    }
 
-        //update profile information
-        if (name) {
-            updateProfile(currentUser, {
-                displayName: name,
-            });
-        }
+    if (name && name !== currentUser.displayName) {
+      updatedInfo.displayName = name;
+      updatedData.name = name;
+    }
 
-        if (username) {
-            updateProfile(currentUser, {
-                displayName: username,
-            });
-        }
+    if (username && username !== currentUser.displayName) {
+      updatedInfo.displayName = username;
+      updatedData.username = username;
+    }
 
-        if (email) {
-            updateProfile(currentUser, {   
-                email: email,
-            });
-        }
+    if (email && email !== currentUser.email) {
+      updatedInfo.email = email;
+      updatedData.email = email;
+    }
 
-        if (password) {
-            updateProfile(currentUser, {
-                password: password,
-            });
-        }
+    if (password) {
+      updatedInfo.password = password;
+      updatedData.password = password;
+    }
 
-        if (phone) {
-            updateProfile(currentUser, {
-                phone: phone,
-            });
-        }
-        
-        if (address) {
-            updateProfile(currentUser, {
-                address: address,
-            });
-        }
+    if (phone) {
+      updatedData.phone = phone;
+    }
 
-        if (country) {
-            updateProfile(currentUser, {
-                country: country,
-            });
-        }
-        
-        //update user information in the database
-        const userRef = doc(db, "users", currentUser.uid);
-        await setDoc(userRef, {
-            name: name,
-            username: username,
-            email: email,
-            password: password,
-            phone: phone,
-            address: address,
-            country: country,
-            createdAt: serverTimestamp(),
-        });
+    if (address) {
+      updatedData.address = address;
+    }
 
-        navigate(`/profile/${currentUser.displayName}`);
-    };
+    if (country) {
+      updatedData.country = country;
+    }
+
+    updateProfileInfo(updatedInfo);
+    updateUserInDatabase(updatedData);
+
+    navigate(`/profile/${currentUser.displayName}`);
+  };
 
     return (
         <div className="editProfile">

@@ -30,8 +30,12 @@ export default function Navbar() {
             </div>
             <div className="navbarRight">
                 <div className="navbarLinks">
-                    <span className="navbarLink">Homepage</span>
-                    <span className="navbarLink">Timeline</span>
+                    <Link to="/home" style={{ textDecoration: "none" }}>
+                        <span className="navbarLink">Homepage</span>
+                    </Link>
+                    <Link to={`/profile/${currentUser.displayName}`} style={{ textDecoration: "none" }}>
+                        <span className="navbarLink">Timeline</span>
+                    </Link>
                 </div>
                 <div className="navbarIcons">
                     <div className="navbarIconItem">
