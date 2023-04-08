@@ -8,7 +8,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EventIcon from "@mui/icons-material/Event";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import MenuLink from "../menuLink/MenuLink";
-import Friends from "../friends/Friends";
+import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -37,6 +37,18 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
+            <Link to={`/profile/${currentUser.displayName}`} style={{ textDecoration: 'none', color: 'black' }}>
+            <div className="sidebarProfileInfo">
+                
+                    <img
+                        src={currentUser.photoURL}
+                        alt=""
+                        className="sidebarProfileUserImg"
+                    />
+                
+                <h4 className="sidebarProfileInfoName">{currentUser.displayName}</h4>
+            </div>
+            </Link>
             <div className="sidebarWrapper">
                 <MenuLink Icon={<RssFeedIcon />} text="Feed" />
                 <MenuLink Icon={<ChatIcon />} text="Chats" />
@@ -50,10 +62,6 @@ export default function Sidebar() {
                 </span>
 
                 <hr className="sidebarHr" />
-
-                <ul className="sidebarFriendList">
-                    <Friends />
-                    </ul>
             </div>
         </div>
     );

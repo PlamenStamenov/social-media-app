@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
+import Friends from "../friends/Friends";
 
 import "./ProfileRightBar.scss";
 
@@ -46,70 +47,18 @@ export default function ProfileRightBar() {
                 <div className="profileRightBarInfoItem">
                     <span className="profileRightBarInfoKey">Address: </span>
                     <span className="profileRightBarInfoValue">
-                    {getUserInfo.address ? getUserInfo.address : "No Address"}
+                        {getUserInfo.address ? getUserInfo.address : "No Address"}
                     </span>
                 </div>
                 <div className="profileRightBarInfoItem">
                     <span className="profileRightBarInfoKey">Country: </span>
                     <span className="profileRightBarInfoValue">{getUserInfo.country}</span>
                 </div>
-                <div className="profileRightBarInfoItem">
-                    <span className="profileRightBarInfoKey">Relationship: </span>
-                    <span className="profileRightBarInfoValue">Single</span>
-                </div>
             </div>
-
-            <h4 className="profileRightBarTitle">Close Friends</h4>
-            <div className="profileRightBarFollowings">
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend1.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Janet</span>
-                </div>
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend2.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Isabella</span>
-                </div>
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend3.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Beverly</span>
-                </div>
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend4.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Glenna</span>
-                </div>
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend5.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Alexis</span>
-                </div>
-                <div className="profileRightBarFollowing">
-                    <img
-                        src="/assets/person/friend6.jpg"
-                        alt=""
-                        className="profileRightBarFollowingImg"
-                    />
-                    <span className="profileRightBarFollowingName">Kate</span>
-                </div>
+            <div className="profileRightBarHeading">
+                <span className="profileRightBarTitle">Friends</span>
             </div>
+            <Friends />
         </div>
     );
 };

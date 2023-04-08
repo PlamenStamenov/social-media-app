@@ -109,6 +109,7 @@ export default function Register() {
                                         accept=".png,.jpeg,.jpg"
                                         style={{ display: "none" }}
                                         onChange={handleImageChange}
+                                        required
                                     />
                                 </label>
                             </div>
@@ -135,6 +136,9 @@ export default function Register() {
                                     id="password"
                                     className="registerInput"
                                     required
+                                    maxLength={32}
+                                    minLength={6}
+                                    
                                 />
                                 <input
                                     type="password"

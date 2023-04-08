@@ -1,11 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import "firebase/compat/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyASRhLTRoVMTMHEEbj5uAwHJjbWPCsqhoY",
@@ -20,7 +16,8 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 // Set Firebase Authentication to persistent
-getAuth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence)
   .then(() => {
     console.log('Firebase Authentication is now persistent');
   })
@@ -28,8 +25,7 @@ getAuth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     console.log('Firebase Authentication could not be set to persistent');
   });
 
-// Initialize Firebase Authentication and get a reference to the service
-export const auth = getAuth(app);
+export { auth };
 
-export const storage = getStorage();
+export const storage = getStorage(app);
 export const db = getFirestore(app);

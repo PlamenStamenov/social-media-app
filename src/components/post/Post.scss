@@ -76,6 +76,7 @@
 
                 .postLikeCounter{
                     font-size: 15px;
+                    font-weight: bold;
                 }
             }
 
@@ -162,7 +163,7 @@
         .commentWrapper{
             display: flex;
             align-items: center;
-            border-top: 1px dashed #011631;
+            border-top: 1px dashed #53348a;
             width: 90%;
             margin: auto;
 
@@ -172,7 +173,7 @@
                 width: 60px;
                 height: 60px;
                 border-radius: 50%;
-                border: 2px solid #011631;
+                border: 2px solid #53348a;
                 object-fit: cover;
                 cursor: pointer;
             }
@@ -187,11 +188,11 @@
                 }
 
                 .commentText{
-                    background-color: #011631;
-                    color: white;
+                    background-color: #53348a33;
+                    color: black;
                     padding: 10px;
                     margin-top: 3px;
-                    border-radius: 30px 30px 30px 30px;
+                    border-radius: 30px;
                 }
             }
         }

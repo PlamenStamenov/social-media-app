@@ -96,7 +96,7 @@ export default function Post({ post }) {
                             <img src={post.data.photoURL} alt="" className="postProfileImg" />
                         </Link>
                         <span className="postUsername">
-                            @{post.data.displayName.replace(/\s+/g, "").toLowerCase()}
+                            {post.data.displayName.replace(/\s+/g, "")}
                         </span>
                         <span className="postDate">
                             <TimeAgo
@@ -133,7 +133,7 @@ export default function Post({ post }) {
                             className="postCommentText"
                             onClick={() => setCommentOpen(!commentOpen)}
                         >
-                            {comments.length} · comments · share
+                            <strong>{comments.length}</strong> {comments.length > 1 ? "Comments" : "Comment"}
                         </span>
                     </div>
                 </div>
@@ -147,7 +147,7 @@ export default function Post({ post }) {
                         }}
                     >
                         {liked ? (
-                            <ThumbUp style={{ color: "#011631" }} className="footerIcon" />
+                            <ThumbUp style={{ color: "#53348a" }} className="footerIcon" />
                         ) : (
                             <ThumbUpAltOutlined className="footerIcon" />
                         )}
@@ -197,7 +197,7 @@ export default function Post({ post }) {
                                     />
                                     <div className="commentInfo">
                                         <span className="commentUsername">
-                                            @{c.data.displayName.replace(/\s+/g, "").toLowerCase()}
+                                            {c.data.displayName.replace(/\s+/g, "")}
                                         </span>
                                         <p className="commentText">{c.data.comment}</p>
                                     </div>
