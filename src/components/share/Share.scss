@@ -34,6 +34,23 @@
                 }
             }
 
+            .sharePost{
+                display: flex;
+                padding: 10px 25px;
+                background-color: #53348a;
+                color: white;
+                font-size: 14px;
+                font-weight: 500;
+                margin: 0px 20px 20px 0px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .sharePostDisabled {
+                cursor: not-allowed;
+                background-color: #53348aa4;
+            }
+
         }
         .shareHr{
             margin: 20px;

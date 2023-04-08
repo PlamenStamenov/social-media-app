@@ -28,21 +28,29 @@ export default function Share() {
     const { currentUser } = useContext(AuthContext);
     const [input, setInput] = useState("");
     const [showEmojis, setShowEmojis] = useState(false);
+    const [inputFocused, setInputFocused] = useState(false);
 
     const [img, setImg] = useState(null);
 
-    const handlePost = async () => {
-        if (img) {
-            const storageRef = ref(storage, "Posts/" + uuid());
+    const handlePost = async (e) => {
+        e.preventDefault();
+        if (!input && !img) {
+            return; // do not post if there is no content
+        }
 
-            const uploadTask = uploadBytesResumable(storageRef, img);
+        try {
+            if (img) {
+                const storageRef = ref(storage, `Posts/${uuid()}`);
+                const uploadTask = uploadBytesResumable(storageRef, img);
 
-            uploadTask.on(
-                (error) => {
-                    setError(true);
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                uploadTask.on(
+                    "state_changed",
+                    null,
+                    (error) => {
+                        setError(true);
+                    },
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
                         await addDoc(collection(db, "posts"), {
                             uid: currentUser.uid,
                             photoURL: currentUser.photoURL,
@@ -63,53 +71,42 @@ export default function Share() {
                                 timestamp: Timestamp.now(),
                             }),
                         });
-                    });
-                }
-            );
-        } else {
-            await addDoc(collection(db, "posts"), {
-                uid: currentUser.uid,
-                photoURL: currentUser.photoURL,
-                displayName: currentUser.displayName,
-                input,
-
-                timestamp: serverTimestamp(),
-            });
-
-            await updateDoc(doc(db, "usersPosts", currentUser.uid), {
-                messages: arrayUnion({
-                    id: uuid(),
+                    }
+                );
+            } else {
+                await addDoc(collection(db, "posts"), {
                     uid: currentUser.uid,
                     photoURL: currentUser.photoURL,
                     displayName: currentUser.displayName,
                     input,
+                    timestamp: serverTimestamp(),
+                });
 
-                    timestamp: Timestamp.now(),
-                }),
-            });
+                await updateDoc(doc(db, "usersPosts", currentUser.uid), {
+                    messages: arrayUnion({
+                        id: uuid(),
+                        uid: currentUser.uid,
+                        photoURL: currentUser.photoURL,
+                        displayName: currentUser.displayName,
+                        input,
+                        timestamp: Timestamp.now(),
+                    }),
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            setError(true);
         }
+
+        setInput("");
+        setImg(null);
+        setFile(null);
         setShowEmojis(false);
-    };
-    const handleKey = (e) => {
-        if (e.code === "Enter") {
-            e.preventDefault(); // Prevents the default behavior of submitting the form
-            handlePost();
-            setInput(""); // Resets the input state
-            setFile(null); // Resets the file state
-            setImg(null); // Resets the img state
-        }
-    };
-
-    const addEmoji = (e) => {
-        let sym = e.unified.split("-");
-        let codesArray = [];
-        sym.forEach((el) => codesArray.push("0x" + el));
-        let emoji = String.fromCodePoint(...codesArray);
-        setInput(input + emoji);
     };
 
     const removeImage = () => {
         setImg(null);
+        setFile(null);
     };
 
     return (
@@ -125,11 +122,18 @@ export default function Share() {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
+                        onFocus={() => setInputFocused(true)}
+                        onBlur={() => setInputFocused(false)}
                         placeholder={`What's on your mind ${currentUser.displayName} ?`}
                         className="shareInput"
-                        onKeyDown={handleKey}
                     />
-
+                    <button
+                        className={`shareButton sharePost${!input && !img ? " sharePostDisabled" : ""}`}
+                        onClick={handlePost}
+                        style={{ visibility: inputFocused || img || input ? "visible" : "hidden" }}
+                    >
+                        Send
+                    </button>
                 </div>
                 <hr className="shareHr" />
                 {file && (

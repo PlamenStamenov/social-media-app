@@ -1,16 +1,15 @@
 import "./Storycard.scss";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 
-export default function Storycard () {
-  const { currentUser } = useContext(AuthContext);
 
-  return (
-    <div className="storyCard">
-      <div className="overlay"></div>
-      <img src={currentUser} alt="" className="storyProfile" />
-      <img src={currentUser} alt="" className="storybackground" />
-      <span className="text">{currentUser.displayName}</span>
-    </div>
-  );
+export default function Storycard({ user }) {
+    const { displayName, profileImage, image } = user;
+
+    return (
+        <div className="storyCard">
+            <div className="overlay"></div>
+            <img src={profileImage} alt="" className="storyProfile" />
+            <img src={image} alt="" className="storybackground" />
+            <span className="text">{displayName}</span>
+        </div>
+    );
 };

@@ -92,7 +92,7 @@ export default function Post({ post }) {
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <Link to="/profile/userId">
+                        <Link to={`/profile/${post.data.displayName.replace(/\s+/g, "").toLowerCase()}`}>
                             <img src={post.data.photoURL} alt="" className="postProfileImg" />
                         </Link>
                         <span className="postUsername">
@@ -122,7 +122,7 @@ export default function Post({ post }) {
                                 likePost();
                             }}
                             className="bottomLeftIcon"
-                            style={{ color: "#011631" }}
+                            style={{ color: "#53348a" }}
                         />
                         {likes.length > 0 && (
                             <span className="postLikeCounter">{likes.length}</span>

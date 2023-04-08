@@ -1,18 +1,18 @@
 import "./Online.scss";
 
-export default function Online ({ onlineuser }) {
+export default function Online () {
   return (
     <div className="online">
       <li className="rightbarFriend">
         <div className="rightbarProfileImgContainer">
           <img
-            src={onlineuser.profilePicture}
+            src="/assets/person/noAvatar.png"
             alt=""
             className="rightbarProfileImg"
           />
           <span className="rightbarOnline"></span>
         </div>
-        <span className="rightbarUsername">{onlineuser.username}</span>
+        <span className="rightbarUsername">Online user</span>
       </li>
     </div>
   );

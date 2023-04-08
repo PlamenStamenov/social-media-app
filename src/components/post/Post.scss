@@ -22,7 +22,7 @@
                     height: 40px;
                     border-radius: 50%;
                     object-fit: cover;
-                    border: 2px solid #011631;
+                    border: 2px solid #53348a;
                     cursor: pointer;
                 }
 
@@ -130,7 +130,7 @@
             width: 75%;
             background: transparent;
             color: black;
-            border: 1px solid #011631;
+            border: 1px solid #53348a;
             padding: 10px 5px 0px 5px;
             margin: 0px 0px 20px 20px;
             outline: none;
@@ -139,7 +139,7 @@
         .commentPost{
             display: flex;
             padding: 10px 25px;
-            background-color: #011631;
+            background-color: #53348a;
             color: white;
             font-size: 14px;
             font-weight: 500;
@@ -149,7 +149,7 @@
 
             &:disabled{
                 cursor: not-allowed;
-                background-color: #011631a4;
+                background-color: #53348aa4;
             }
         }
     }

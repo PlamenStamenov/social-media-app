@@ -8,6 +8,7 @@ import { addDoc, collection, query, orderBy, onSnapshot, serverTimestamp } from 
 
 const Stories = () => {
     const [stories, setStories] = useState([]);
+    const [selectedStory, setSelectedStory] = useState(null);
     const { currentUser } = useContext(AuthContext);
 
     const addStory = async () => {
@@ -25,9 +26,8 @@ const Stories = () => {
                 snapshot.docs
                     .map((doc) => ({ id: doc.id, data: doc.data() }))
                     .filter((story) => {
-                        const currentTime = new Date().getTime();
                         const storyTime = story.data.createdAt?.toMillis();
-                        return storyTime && currentTime - storyTime <= 600000;
+                        return storyTime && Date.now() - storyTime <= 600000;
                     })
             );
         });
@@ -81,26 +81,46 @@ const Stories = () => {
         }
     };
 
+    const handleStoryClick = (story) => {
+        setSelectedStory(story);
+    };
+
+    const handleClosePopup = () => {
+        setSelectedStory(null);
+    };
+
     return (
         <div className="stories">
-            <div className="storyCard">
-                <div className="overlay"></div>
-                <img src={currentUser.photoURL} alt="" className="storyProfile" />
-                <img src={currentUser.photoURL} alt="" className="storybackground" />
-                <img
-                    src="/assets/person/upload.png"
-                    alt=""
-                    className="storyadd"
-                    onClick={addStory}
-                />
-                <span className="text">{currentUser.displayName}</span>
+          <div className="storyCard">
+            <div className="overlay"></div>
+            <img src={currentUser.photoURL} alt="" className="storyProfile" />
+            <img src={currentUser.photoURL} alt="" className="storybackground" />
+            <img
+              src="/assets/person/upload.png"
+              alt=""
+              className="storyadd"
+              onClick={addStory}
+            />
+            <span className="text">{currentUser.displayName}</span>
+          </div>
+          {[...stories].map((story) => (
+            <Storycard
+              key={story.id}
+              user={story.data}
+              onClick={() => handleStoryClick(story)}
+            />
+          ))}
+          {selectedStory && (
+            <div className="popup">
+              <div className="popupContent">
+                <button onClick={handleClosePopup}>Close</button>
+                <img src={selectedStory.data.image} alt="" />
+                <p>{selectedStory.data.displayName}</p>
+              </div>
             </div>
-
-            {[...stories].reverse().map((story) => (
-                <Storycard key={story.id} user={story.data} />
-            ))}
+          )}
         </div>
-    );
+      );
 };
 
 export default Stories;

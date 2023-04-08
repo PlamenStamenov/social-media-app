@@ -9,7 +9,6 @@ import EventIcon from "@mui/icons-material/Event";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import MenuLink from "../menuLink/MenuLink";
 import Friends from "../friends/Friends";
-import { Users } from "../../data";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
@@ -52,11 +51,9 @@ export default function Sidebar() {
 
                 <hr className="sidebarHr" />
 
-                {/*<ul className="sidebarFriendList">
-                    {Users.map((u) => (
-                        <Friends key={u.id} user={u} />
-                    ))}
-                    </ul>*/}
+                <ul className="sidebarFriendList">
+                    <Friends />
+                    </ul>
             </div>
         </div>
     );

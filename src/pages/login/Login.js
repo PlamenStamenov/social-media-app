@@ -32,7 +32,7 @@ export default function Login() {
                 <div className="loginLeft">
                     <h3 className="loginLogo">StateHook</h3>
                     <span className="loginDesc">
-                        Connect with friends and the world around you on Facebook.
+                        Connect with friends and the world around you on StateHook.
                     </span>
                 </div>
                 <div className="loginRight">
@@ -59,7 +59,7 @@ export default function Login() {
                                 <button type="submit" className="loginButton">
                                     Sign In
                                 </button>
-                                <Link to="/register">
+                                <Link to="/">
                                     <button className="loginRegisterButton">
                                         Create a New Account
                                     </button>
