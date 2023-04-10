@@ -22,7 +22,7 @@ export default function Feed() {
 
     return (
         <div className="feed">
-            <div className="feedWrapper">
+            <article className="feedWrapper">
                 <Stories />
                 <Share />
                 {posts
@@ -30,7 +30,7 @@ export default function Feed() {
                     .map((p) => (
                         <Post key={p.id} post={p} />
                     ))}
-            </div>
+            </article>
         </div>
     );
 };
